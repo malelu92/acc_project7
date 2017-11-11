@@ -24,6 +24,7 @@ $(document).ready(function() {
       if(state=="none") {
 
         state = "verticalscan";
+        $("#horizontal-scanbar").css("top", 0+"px");
         $("#horizontal-scanbar").show();
 
         // Setting up the vertical scan
@@ -34,7 +35,7 @@ $(document).ready(function() {
     	  	if(horizontalmovement=="down") {
     	  	  y = y+2;
     	    } else if(horizontalmovement=="up") {
-    	      y = y-2;
+    	      y = y-2; 
     	    }
 
     	  	if(y >= $(window).height()) {
@@ -50,6 +51,7 @@ $(document).ready(function() {
   	  } else if(state=="verticalscan") {
 
         state = "horizontalscan";
+        $("#vertical-scanbar").css("left", 0+"px");
         $("#vertical-scanbar").show();
 
         // Setting up the vertical scan
