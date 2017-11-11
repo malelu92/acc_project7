@@ -16,6 +16,13 @@ $(document).ready(function() {
     }, 1000);
   })
 
+  $("body").append("<input type='button' class='scrollup' value='up'>");
+  $(".scrollup").click(function() {
+    $('html, body').animate({
+        scrollTop: $(document).scrollTop()-150
+    }, 1000);
+  })
+
 
   $(document).keydown(function(e) {
   	if(e.key=="b") {
