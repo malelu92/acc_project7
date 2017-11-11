@@ -23,6 +23,19 @@ $(document).ready(function() {
     }, 1000);
   })
 
+  $("body").append("<input type='button' class='scrollright' value='right'>");
+  $(".scrollright").click(function() {
+    $('html, body').animate({
+        scrollLeft: $(document).scrollLeft()+150
+    }, 1000);
+  })
+
+  $("body").append("<input type='button' class='scrollleft' value='left'>");
+  $(".scrollleft").click(function() {
+    $('html, body').animate({
+        scrollLeft: $(document).scrollLeft()-150
+    }, 1000);
+  })
 
   $(document).keydown(function(e) {
   	if(e.key=="b") {
