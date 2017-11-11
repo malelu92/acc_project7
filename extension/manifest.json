@@ -3,13 +3,13 @@
   "name": "Access Reader",
   "minimum_chrome_version": "24.0.1307.0",
   "version": "0.0.1",
-  "homepage_url": "https://malelu92.github.io/acc_project7/",
+  "homepage_url": "https://malelu92.github.io/acc_project7_site/",
   "icons": {
   },
   "content_scripts": [
     {
       "matches": [
-        "https://malelu92.github.io/acc_project7/"
+        "https://malelu92.github.io/acc_project7_site/"
       ],
       "js": [
           "scripts/jquery.min.js",
