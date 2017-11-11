@@ -83,8 +83,8 @@ body{
 .keyboard{
   position: fixed;
   right: 180px;
-  bottom: 50px;
-  width:620px; height: 190px;
+  bottom: 120px;
+  width:620px; height: 250px;
   background-color: #111;
   margin: 0px auto;
   border-radius: 9px;
