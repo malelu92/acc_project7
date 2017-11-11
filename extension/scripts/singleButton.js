@@ -5,6 +5,7 @@ var state = "none";  // verticalscan, horizontalscan, none
 var interval = null;
 var keyboard = "off" //on
 var recentInputArea = null;
+var caps = "off" //on
 
 $(document).ready(function() {
   $("#thebutton").click(function() {
@@ -73,10 +74,10 @@ $(document).ready(function() {
     	  	  horizontalmovement = "down";
     	  	}
 
-    	  	console.log("new y is " + y + " " + $(window).height());
+    	  	/*console.log("new y is " + y + " " + $(window).height());*/
 
     	  	$("#horizontal-scanbar").css("top", y+"px");
-    	  }, 50);
+    	  }, 30);
   	  } else if(state=="verticalscan") {
 
         state = "horizontalscan";
@@ -100,10 +101,10 @@ $(document).ready(function() {
             verticalmovement = "right";
           }
 
-          console.log("new x is " + x + " " + $(window).width());
+          /*console.log("new x is " + x + " " + $(window).width());*/
 
           $("#vertical-scanbar").css("left", x+"px");
-        }, 50);
+        }, 30);
       } 
       else if(state=="horizontalscan") {
 
@@ -134,16 +135,33 @@ $(document).ready(function() {
 
           if($(elementtoclick).is("input[type=\"text\"],textarea")) {
             recentInputArea = elementtoclick;
-            console.log("TEXT3")
           }
-          /*console.log(String(elementtoclick))
-          console.log($(elementtoclick).attr('class'));
-          console.log($.trim($(elementtoclick).text()));*/
-          if(String($(elementtoclick).attr('class') == "key letter")) {
-            console.log($.trim($(elementtoclick).text()));
+
+          if($(elementtoclick).attr('class') == "key letter") {
+            console.log("LETTER")
             letter = $.trim($(elementtoclick).text());
-            $(recentInputArea).val(letter);
+            letter = String(letter);
+            if (caps == "off") { 
+              letter = letter.toString().toLowerCase();
+              console.log(letter);
+            }
+            $(recentInputArea).val($(recentInputArea).val() + letter);
           }
+
+          if($(elementtoclick).attr('class') == "key caps") {
+            console.log("CAAAAAPS")
+            if (caps == "off") {
+              caps = "on";
+            }
+            else {
+              caps = "off";
+            }
+          }
+
+          if($(elementtoclick).attr('class') == "key backspace") {
+            /*console.log($(recentInputArea).val().length())*/
+          }
+
         });
 
         $("#horizontal-scanbar").hide();
