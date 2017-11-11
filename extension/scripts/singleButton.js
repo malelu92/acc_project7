@@ -129,6 +129,10 @@ $(document).ready(function() {
           $(".click").hide();
           var elementtoclick = document.elementFromPoint(x, y);
           simulateClick(elementtoclick);
+          console.log(elementtoclick)
+          if($(elementtoclick).is("input[type=\"text\"],textarea")) {
+            console.log("TEXT3")
+          }
         });
 
         $("#horizontal-scanbar").hide();
