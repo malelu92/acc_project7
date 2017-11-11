@@ -159,7 +159,15 @@ $(document).ready(function() {
           }
 
           if($(elementtoclick).attr('class') == "key backspace") {
-            /*console.log($(recentInputArea).val().length())*/
+            var text = $(recentInputArea).val();
+            console.log(text.length)
+            if (text.length > 1) {
+              text = text.slice(0, text.length - 2);
+            }
+            else {
+              text = "";
+            }
+            $(recentInputArea).val(text);
           }
 
         });
