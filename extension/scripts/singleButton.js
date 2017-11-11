@@ -4,6 +4,7 @@ var verticalmovement = "right"; // left, right
 var state = "none";  // verticalscan, horizontalscan, none
 var interval = null;
 var keyboard = "off" //on
+var recentInputArea = null;
 
 $(document).ready(function() {
   $("#thebutton").click(function() {
@@ -75,7 +76,7 @@ $(document).ready(function() {
     	  	console.log("new y is " + y + " " + $(window).height());
 
     	  	$("#horizontal-scanbar").css("top", y+"px");
-    	  }, 100);
+    	  }, 50);
   	  } else if(state=="verticalscan") {
 
         state = "horizontalscan";
@@ -102,7 +103,7 @@ $(document).ready(function() {
           console.log("new x is " + x + " " + $(window).width());
 
           $("#vertical-scanbar").css("left", x+"px");
-        }, 100);
+        }, 50);
       } 
       else if(state=="horizontalscan") {
 
@@ -130,8 +131,18 @@ $(document).ready(function() {
           var elementtoclick = document.elementFromPoint(x, y);
           simulateClick(elementtoclick);
           console.log(elementtoclick)
+
           if($(elementtoclick).is("input[type=\"text\"],textarea")) {
+            recentInputArea = elementtoclick;
             console.log("TEXT3")
+          }
+          /*console.log(String(elementtoclick))
+          console.log($(elementtoclick).attr('class'));
+          console.log($.trim($(elementtoclick).text()));*/
+          if(String($(elementtoclick).attr('class') == "key letter")) {
+            console.log($.trim($(elementtoclick).text()));
+            letter = $.trim($(elementtoclick).text());
+            $(recentInputArea).val(letter);
           }
         });
 
