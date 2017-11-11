@@ -3,11 +3,18 @@ var horizontalmovement = "down"; // up
 var verticalmovement = "right"; // left, right
 var state = "none";  // verticalscan, horizontalscan, none
 var interval = null;
+var keyboard = "off" //on
 
 $(document).ready(function() {
   $("#thebutton").click(function() {
-  	/*alert("I was clicked sdasld!");*/
-    $("body").append(htmlKeyboard);
+    if (keyboard == "off") {
+      keyboard = "on"
+      $("body").append(htmlKeyboard);
+    }
+    else {
+      keyboard = "off"
+      htmlKeyboard.remove();
+    }
   })
 
   $("body").append("<input type='button' class='scrolldown' value='down'>");
@@ -145,7 +152,7 @@ function simulateClick(element) {
 };
 
 <!-- keyboard code from https://codepen.io/attilahajzer/pen/kydqJ -->
-var htmlKeyboard = "<div class='keyboard'>\
+var htmlKeyboard = $("<div class='keyboard'>\
 <div class='section-a'>\
 <div class='key function space1'>Esc</div>\
 <div class='key function'>F1</div>\
@@ -346,4 +353,4 @@ F12\
     Ctrl\
   </div>\
   </div>\
-</div>"
+</div>");

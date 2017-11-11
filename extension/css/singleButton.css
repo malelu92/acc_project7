@@ -75,9 +75,9 @@
 
 ::selection{background-color:none; color:inherit;}
 
-body{
+/*body{
   background-color: #14B524; 
-}
+}*/
 
 .cable{height:100px; width:10px; background-color:#000; margin:0 60%;}
 .keyboard{
