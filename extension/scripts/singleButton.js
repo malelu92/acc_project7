@@ -144,55 +144,36 @@ function simulateClick(element) {
   dispatchEvent(element, 'mouseup');
 };
 
-var htmlKeyboard = "<div class='keyboard'><div class='logo'>hp</div><div class='lights'><span>1</span><span>A</span><span>V</span></div>"
-  
-  
-  /*<div class="section-a">
-  <div class="key function space1">
-    Esc
-  </div>
-
-  <div class="key function">
-    F1
-  </div>
-  <div class="key function">
-    F2
-  </div>
-  <div class="key function">
-    F3
-  </div>
-  
-  <div class="key function space2">
-    F4
-  </div>
-  <div class="key function">
-    F5
-  </div>
-  <div class="key function">
-    F6
-  </div>
-    <div class="key function">
-    F7
-  </div>
-  <div class="key function space2">
-    F8
-  </div>
-  
-  <div class="key function">
-    F9
-  </div>
-  <div class="key function">
-    F10
-  </div>
-    <div class="key function">
-    F11
-  </div>
-  <div class="key function">
-    F12
-  </div>
+var htmlKeyboard = "<div class='keyboard'>\
+<div class='logo'>hp</div>\
+<div class='lights'>\
+<span>1</span>\
+<span>A</span>\
+<span>V</span>\
+</div>\
+<div class='section-a'>\
+<div class='key function space1'>Esc</div>\
+<div class='key function'>F1</div>\
+<div class='key function'>F2</div>\
+<div class='key function'>F3</div>\
+<div class='key function space2'>F4</div>\
+<div class='key function'>F5</div>\
+<div class='key function'>F6</div>\
+<div class='key function'>F7</div>\
+<div class='key function space2'>F8</div>\
+<div class='key function'>F9</div>\
+<div class='key function'>\
+F10 \
+</div> \
+<div class='key function'>\
+F11\
+</div>\
+<div class='key function'>\
+F12\
+</div>"
     <!--END FUNCTION KEYS -->
     
-  <div class="key num dual">
+  /*<div class="key num dual">
     ~<br>`
   </div>
     
