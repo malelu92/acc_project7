@@ -7,6 +7,8 @@ var keyboard = "off" //on
 var recentInputArea = null;
 var caps = "off" //on
 var cont = 0;
+var topPage = 0;
+var leftPage = 0;
 
 $(document).ready(function() {
   $("#thebutton").click(function() {
@@ -22,6 +24,7 @@ $(document).ready(function() {
 
   $("body").append("<input type='button' class='scrolldown' value='down'>");
   $(".scrolldown").click(function() {
+    topPage += 150;
     $('html, body').animate({
         scrollTop: $(document).scrollTop()+150
     }, 1000);
@@ -29,6 +32,7 @@ $(document).ready(function() {
 
   $("body").append("<input type='button' class='scrollup' value='up'>");
   $(".scrollup").click(function() {
+    topPage -= 150;
     $('html, body').animate({
         scrollTop: $(document).scrollTop()-150
     }, 1000);
@@ -36,6 +40,7 @@ $(document).ready(function() {
 
   $("body").append("<input type='button' class='scrollright' value='right'>");
   $(".scrollright").click(function() {
+    leftPage += 150;
     $('html, body').animate({
         scrollLeft: $(document).scrollLeft()+150
     }, 1000);
@@ -43,6 +48,7 @@ $(document).ready(function() {
 
   $("body").append("<input type='button' class='scrollleft' value='left'>");
   $(".scrollleft").click(function() {
+    leftPage -= 150;
     $('html, body').animate({
         scrollLeft: $(document).scrollLeft()-150
     }, 1000);
@@ -53,7 +59,6 @@ $(document).ready(function() {
       clearInterval(interval);
 
       if(state=="none") {
-        console.log("CLICOU VERT")
 
         state = "verticalscan";
         $("#horizontal-scanbar").css("top", 0+"px");
@@ -62,9 +67,12 @@ $(document).ready(function() {
         // Setting up the vertical scan
     	  interval = setInterval(function() {
     	  	var offset = $("#horizontal-scanbar").offset();
-    	  	var y = offset.top;
+    	  	var y = offset.top - topPage;
+          console.log("offset.top " + offset.top)
+          console.log("topPage " + topPage)
 
     	  	if(horizontalmovement=="down") {
+            console.log("somou 2")
     	  	  y = y+2;
     	    } else if(horizontalmovement=="up") {
     	      y = y-2; 
@@ -76,12 +84,11 @@ $(document).ready(function() {
     	  	  horizontalmovement = "down";
     	  	}
 
-    	  	/*console.log("new y is " + y + " " + $(window).height());*/
+    	  	console.log("new y is " + y + " " + $(window).height());
 
     	  	$("#horizontal-scanbar").css("top", y+"px");
     	  }, 20);
   	  } else if(state=="verticalscan") {
-        console.log("CLICOU HON")
         state = "horizontalscan";
         $("#vertical-scanbar").css("left", 0+"px");
         $("#vertical-scanbar").show();
@@ -89,7 +96,7 @@ $(document).ready(function() {
         // Setting up the vertical scan
         interval = setInterval(function() {
           var offset = $("#vertical-scanbar").offset();
-          var x = offset.left;
+          var x = offset.left - leftPage;
 
           if(verticalmovement=="right") {
             x = x+2;
@@ -103,19 +110,18 @@ $(document).ready(function() {
             verticalmovement = "right";
           }
 
-          /*console.log("new x is " + x + " " + $(window).width());*/
+          console.log("new x is " + x + " " + $(window).width());
 
           $("#vertical-scanbar").css("left", x+"px");
         }, 20);
       } 
       else if(state=="horizontalscan") {
-        console.log("CLICOU DINAL")
         state = "none";
         var offset = $("#vertical-scanbar").offset();
-        var x = offset.left + $("#vertical-scanbar").width()/2.0;
+        var x = offset.left - leftPage + $("#vertical-scanbar").width()/2.0;
 
         var offset = $("#horizontal-scanbar").offset();
-        var y = offset.top + $("#horizontal-scanbar").height()/2.0;
+        var y = offset.top - topPage + $("#horizontal-scanbar").height()/2.0;
 
 
         $("body").append("<div class='click'></div>");
@@ -133,7 +139,6 @@ $(document).ready(function() {
           "border-radius": "+=12"
         }, 800, function() {
           if (cont == 0) {
-          console.log("CLICOU DINAL 22222")
           $(".click").hide();
           var elementtoclick = document.elementFromPoint(x, y);
           simulateClick(elementtoclick);
@@ -144,7 +149,6 @@ $(document).ready(function() {
           }
 
           if($(elementtoclick).attr('class') == "key letter") {
-            console.log("LETTER")
             letter = $.trim($(elementtoclick).text());
             letter = String(letter);
             if (caps == "off") { 
@@ -155,7 +159,6 @@ $(document).ready(function() {
           }
 
           if($(elementtoclick).attr('class') == "key caps") {
-            console.log("CAAAAAPS")
             if (caps == "off") {
               caps = "on";
             }
@@ -235,7 +238,7 @@ F12\
     #<br>3\
   </div>\
   <div class='key num dual'\
-    $<br>4\
+    \$<br>4\
   </div>\
   <div class='key num dual'>\
     %<br>5\
