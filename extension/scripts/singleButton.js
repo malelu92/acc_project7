@@ -9,6 +9,7 @@ var caps = "off" //on
 var cont = 0;
 var topPage = 0;
 var leftPage = 0;
+var previousClass = null;
 
 $(document).ready(function() {
   $("#thebutton").click(function() {
@@ -149,13 +150,14 @@ $(document).ready(function() {
           }
 
           if($(elementtoclick).attr('class') == "key letter") {
-            letter = $.trim($(elementtoclick).text());
+            var letter = $.trim($(elementtoclick).text());
             letter = String(letter);
             if (caps == "off") { 
               letter = letter.toString().toLowerCase();
               console.log(letter);
             }
             $(recentInputArea).val($(recentInputArea).val() + letter);
+            previousClass = "key letter";
           }
 
           if($(elementtoclick).attr('class') == "key caps") {
@@ -165,6 +167,7 @@ $(document).ready(function() {
             else {
               caps = "off";
             }
+            previousClass = "key caps";
           }
 
           if($(elementtoclick).attr('class') == "key backspace") {
@@ -177,6 +180,25 @@ $(document).ready(function() {
               text = "";
             }
             $(recentInputArea).val(text);
+            previousClass = "key backspace";
+          }
+
+          if($(elementtoclick).attr('class') == "key num dual") {
+            var num_dial = $.trim($(elementtoclick).text());
+            console.log(num_dial)
+            if(previousClass != "key shift left") {
+              var num = num_dial.slice(1,2)
+              $(recentInputArea).val($(recentInputArea).val() + num);
+            }
+            else {
+              var dial = num_dial.slice(0,1);
+              $(recentInputArea).val($(recentInputArea).val() + dial);
+            }
+            previousClass = "key num dual";
+          }
+
+          if ($(elementtoclick).attr('class') == "key shift left") {
+            previousClass = "key shift left";
           }
         }
         cont +=1;
