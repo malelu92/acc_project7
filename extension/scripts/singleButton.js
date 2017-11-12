@@ -6,6 +6,7 @@ var interval = null;
 var keyboard = "off" //on
 var recentInputArea = null;
 var caps = "off" //on
+var cont = 0;
 
 $(document).ready(function() {
   $("#thebutton").click(function() {
@@ -52,6 +53,7 @@ $(document).ready(function() {
       clearInterval(interval);
 
       if(state=="none") {
+        console.log("CLICOU VERT")
 
         state = "verticalscan";
         $("#horizontal-scanbar").css("top", 0+"px");
@@ -77,9 +79,9 @@ $(document).ready(function() {
     	  	/*console.log("new y is " + y + " " + $(window).height());*/
 
     	  	$("#horizontal-scanbar").css("top", y+"px");
-    	  }, 30);
+    	  }, 20);
   	  } else if(state=="verticalscan") {
-
+        console.log("CLICOU HON")
         state = "horizontalscan";
         $("#vertical-scanbar").css("left", 0+"px");
         $("#vertical-scanbar").show();
@@ -104,10 +106,10 @@ $(document).ready(function() {
           /*console.log("new x is " + x + " " + $(window).width());*/
 
           $("#vertical-scanbar").css("left", x+"px");
-        }, 30);
+        }, 20);
       } 
       else if(state=="horizontalscan") {
-
+        console.log("CLICOU DINAL")
         state = "none";
         var offset = $("#vertical-scanbar").offset();
         var x = offset.left + $("#vertical-scanbar").width()/2.0;
@@ -121,6 +123,8 @@ $(document).ready(function() {
         $(".click").css("left", x+"px");
         $(".click").css("top", y+"px");
 
+        cont = 0;
+
         $(".click").animate({
           width: "+=25",
           height: "+=25",
@@ -128,6 +132,8 @@ $(document).ready(function() {
           top: "-=12.5",
           "border-radius": "+=12"
         }, 800, function() {
+          if (cont == 0) {
+          console.log("CLICOU DINAL 22222")
           $(".click").hide();
           var elementtoclick = document.elementFromPoint(x, y);
           simulateClick(elementtoclick);
@@ -162,13 +168,15 @@ $(document).ready(function() {
             var text = $(recentInputArea).val();
             console.log(text.length)
             if (text.length > 1) {
-              text = text.slice(0, text.length - 2);
+              text = text.slice(0, text.length - 1);
             }
             else {
               text = "";
             }
             $(recentInputArea).val(text);
           }
+        }
+        cont +=1;
 
         });
 
