@@ -69,8 +69,6 @@ $(document).ready(function() {
     	  interval = setInterval(function() {
     	  	var offset = $("#horizontal-scanbar").offset();
     	  	var y = offset.top - topPage;
-          console.log("offset.top " + offset.top)
-          console.log("topPage " + topPage)
 
     	  	if(horizontalmovement=="down") {
             console.log("somou 2")
@@ -154,7 +152,6 @@ $(document).ready(function() {
             letter = String(letter);
             if (caps == "off") { 
               letter = letter.toString().toLowerCase();
-              console.log(letter);
             }
             $(recentInputArea).val($(recentInputArea).val() + letter);
             previousClass = "key letter";
@@ -172,7 +169,6 @@ $(document).ready(function() {
 
           if($(elementtoclick).attr('class') == "key backspace") {
             var text = $(recentInputArea).val();
-            console.log(text.length)
             if (text.length > 1) {
               text = text.slice(0, text.length - 1);
             }
@@ -185,7 +181,6 @@ $(document).ready(function() {
 
           if($(elementtoclick).attr('class') == "key num dual") {
             var num_dial = $.trim($(elementtoclick).text());
-            console.log(num_dial)
             if(previousClass != "key shift left") {
               var num = num_dial.slice(1,2)
               $(recentInputArea).val($(recentInputArea).val() + num);
@@ -259,8 +254,8 @@ F12\
   <div class='key num dual'>\
     #<br>3\
   </div>\
-  <div class='key num dual'\
-    \$<br>4\
+  <div class='key num dual'>\
+    $<br>4\
   </div>\
   <div class='key num dual'>\
     %<br>5\
